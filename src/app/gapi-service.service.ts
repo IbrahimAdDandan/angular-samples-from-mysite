@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Source } from './source';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class GapiService {
@@ -8,28 +10,16 @@ export class GapiService {
 
   constructor(private _http: HttpClient) { }
 
-  getGeo() {
-    return this._http.get<any>(this._apiUrl + 'geo');
+  getGeo()  : Observable<Source> {
+    return this._http.get<Source>(this._apiUrl + 'geo');
   }
 
-  getActiveUsers() {
-    return this._http.get<any>(this._apiUrl + 'active-users');
+  getBrowsers() : Observable<Source> {
+    return this._http.get<Source>(this._apiUrl + 'browser');
   }
 
-  getPageViews() {
-    return this._http.get<any>(this._apiUrl + 'page-views');
-  }
-
-  getBrowsers() {
-    return this._http.get<any>(this._apiUrl + 'browser');
-  }
-
-  getOs() {
-    return this._http.get<any>(this._apiUrl + 'os');
-  }
-
-  getSources() {
-    return this._http.get<any>(this._apiUrl + 'source');
+  getSources(): Observable<Source> {
+    return this._http.get<Source>(this._apiUrl + 'source');
   }
 
 }
